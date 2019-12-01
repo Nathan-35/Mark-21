@@ -10,11 +10,46 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var mainColor = #colorLiteral(red: 0.8000066876, green: 0.2954408526, blue: 0.176810354, alpha: 1)
+    var mainColor1 = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+    var touristONLabel = UILabel()
+    var image = UIImage(named: "back-mark24")
+    var imageView = UIImageView()
+    var signInButton = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imageView = UIImageView(frame: view.bounds)
+        imageView.image = image
+        imageView.center = view.center
+        view.addSubview(imageView)
+        
+        touristONLabel.frame = CGRect(x: 100, y: 120, width: 200, height: 50)
+        touristONLabel.text = "TouristON"
+        touristONLabel.textAlignment = .center
+        //touristONLabel.backgroundColor = .blue
+        touristONLabel.font = UIFont(name: "AppleMyungjo", size: 38)
+        //touristONLabel.font = UIFont.boldSystemFont(ofSize: 35)
+        touristONLabel.textColor = .black
+        view.addSubview(touristONLabel)
+        
+        
+        
+        
+        signInButton.frame = CGRect(x: 0, y: 742, width: 375, height: 70)
+        signInButton.setTitle("Sign in", for: .normal)
+        signInButton.backgroundColor = mainColor1
+        signInButton.addTarget(self, action: #selector(push), for: .touchUpInside)
+        view.addSubview(signInButton)
         
     }
 
 
+    @objc func push() {
+        let secondVC = SecondViewController()
+        navigationController?.pushViewController(secondVC, animated: true)
+    }
+    
 }
 
