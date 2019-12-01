@@ -10,8 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var mainColor = #colorLiteral(red: 0.8000066876, green: 0.2954408526, blue: 0.176810354, alpha: 1)
-    var mainColor1 = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+    var mainColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
     var touristONLabel = UILabel()
     var image = UIImage(named: "back-mark24")
     var imageView = UIImageView()
@@ -39,7 +38,7 @@ class ViewController: UIViewController {
         
         signInButton.frame = CGRect(x: 0, y: 742, width: 375, height: 70)
         signInButton.setTitle("Sign in", for: .normal)
-        signInButton.backgroundColor = mainColor1
+        signInButton.backgroundColor = mainColor
         signInButton.addTarget(self, action: #selector(push), for: .touchUpInside)
         view.addSubview(signInButton)
         
