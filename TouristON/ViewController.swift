@@ -19,6 +19,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private var imageView = UIImageView()
     private var emailTextField = UITextField()
     private var passwordTextField = UITextField()
+    private var forgotPasswordButton = UIButton()
     private var signInButton = UIButton()
     
     override func viewDidLoad() {
@@ -93,6 +94,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.leftViewMode = .always
         passwordTextField.delegate = self
         view.addSubview(passwordTextField)
+    }
+    
+    private func createForgotButton() {
+        forgotPasswordButton.frame = CGRect(x: 400, y: 450, width: 0, height: 0)
+        forgotPasswordButton.setTitle("Forgot Password", for: .normal)
+        forgotPasswordButton.sizeToFit()
+        view.addSubview(forgotPasswordButton)
     }
     
     private func createSignInButton() {
