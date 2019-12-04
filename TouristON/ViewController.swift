@@ -127,8 +127,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
     @objc func push() {
-        let secondVC = SecondViewController()
-        navigationController?.pushViewController(secondVC, animated: true)
+        let mainVC = MainVC()
+        navigationController?.pushViewController(mainVC, animated: true)
     }
     
 }
