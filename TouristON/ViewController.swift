@@ -51,13 +51,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //        touristONLabel.textColor = .black
 //        view.addSubview(touristONLabel)
         logo.frame = CGRect(x: view.center.x - 35, y: view.frame.minY + 100, width: 70, height: 75)
+        logo.alpha = 0.7
         //logo.backgroundColor = .black
         //logo.sizeToFit()
         view.addSubview(logo)
     }
     
     private func createEmailTextField() {
-        emailTextField.frame = CGRect(x: 37.5, y: 350, width: 300, height: 40)
+        emailTextField.frame = CGRect(x: view.frame.minX + 15, y: 350, width: view.frame.maxX - 30, height: 50)
         emailTextField.placeholder = "Email"
         emailTextField.backgroundColor = .yellow
         emailTextField.keyboardAppearance = .dark
@@ -78,7 +79,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func createPasswordTextField() {
-        passwordTextField.frame = CGRect(x: 37.5, y: 410, width: 300, height: 40)
+        passwordTextField.frame = CGRect(x: view.frame.minX + 15, y: 420, width: view.frame.maxX - 30, height: 50)
         passwordTextField.placeholder = "Password"
         passwordTextField.backgroundColor = .yellow
         passwordTextField.keyboardAppearance = .dark
