@@ -55,6 +55,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         //logo.backgroundColor = .black
         //logo.sizeToFit()
         view.addSubview(logo)
+        //logo
     }
     
     private func createEmailTextField() {
