@@ -14,19 +14,17 @@ class OffersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createButton()
+        createAccountButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
     }
     
-    func createButton(){
-        button.frame = CGRect(x: 0, y: 0, width: 100, height: 25)
-        button.center = view.center
-        button.setTitle("Tap", for: .normal)
-        button.setTitleColor(.red, for: .normal)
-        button.backgroundColor = .green
+    func createAccountButton(){
+        button.frame = CGRect(x: self.view.bounds.maxX - 80, y: view.bounds.minY + 50, width: 48, height: 48)
+        button.adjustsImageWhenHighlighted = false
+        button.setImage(UIImage(named: "account"), for: .normal)
         button.addTarget(self, action: #selector(go), for: .touchUpInside)
         view.addSubview(button)
     }
