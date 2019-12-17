@@ -131,13 +131,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func createEmailLine() {
-        emailLine.frame = CGRect(x: 85, y: 337, width: 1, height: 45)
+        emailLine.frame = CGRect(x: 85, y: 337, width: 0.7, height: 45)
         emailLine.backgroundColor = .lightGray
         view.addSubview(emailLine)
     }
     
     private func createEmailTextField() {
-        emailTextField.frame = CGRect(x: 100, y: 327, width: 240, height: 30)
+        emailTextField.frame = CGRect(x: 100, y: 357, width: 240, height: 30)
         emailTextField.keyboardAppearance = .dark
         emailTextField.keyboardType = .emailAddress
         emailTextField.autocapitalizationType = .none
@@ -173,7 +173,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func createPasswordLine() {
-        passwordLine.frame = CGRect(x: 85, y: 426, width: 1, height: 45)
+        passwordLine.frame = CGRect(x: 85, y: 426, width: 0.7, height: 45)
         passwordLine.backgroundColor = .lightGray
         view.addSubview(passwordLine)
     }
