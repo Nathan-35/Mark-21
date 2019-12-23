@@ -54,17 +54,17 @@ class TouristHomeVC: UIViewController{
         headLabel.frame = CGRect(x: view.bounds.minX + 20, y: 140, width: 140, height: 40)
         //headLabel.backgroundColor = .red
         headLabel.textColor = .white
-        headLabel.text = "TouristON"
-        headLabel.font = UIFont(name: "Helvetica", size: 28)
+        headLabel.text = "TouristOn"
+        headLabel.font = UIFont(name: "Georgia", size: 28)
         view.addSubview(headLabel)
     }
     
     func createSubLabel(){
-        subLabel.frame = CGRect(x: view.bounds.minX + 20, y: 185, width: 200, height: 15)
+        subLabel.frame = CGRect(x: view.bounds.minX + 22, y: 185, width: 200, height: 15)
         //subLabel.backgroundColor = .blue
         subLabel.textColor = .white
         subLabel.text = "App collect all your services"
-        subLabel.font = UIFont(name: "Helvetica", size: 15)
+        subLabel.font = UIFont(name: "Georgia", size: 15)
         view.addSubview(subLabel)
     }
     
@@ -85,7 +85,7 @@ class TouristHomeVC: UIViewController{
     }
     
     func createLine(){
-        searchLine.frame = CGRect(x: searchView.frame.minX + 65, y: searchView.frame.minY + 7, width: 1, height: searchView.bounds.maxY - 12)
+        searchLine.frame = CGRect(x: searchView.frame.minX + 65, y: searchView.frame.minY + 7, width: 0.7, height: searchView.bounds.maxY - 12)
         searchLine.backgroundColor = mainColor
         view.addSubview(searchLine)
     }
@@ -101,7 +101,7 @@ class TouristHomeVC: UIViewController{
     func createSearchBar(){
         searchBar.frame = CGRect(x: Int(searchView.frame.minX + 80), y: Int(searchView.frame.minY + 34), width: 255, height: 18)
 //        searchBar.backgroundColor = .red
-        searchBar.placeholder = "destination..."
+        searchBar.placeholder = "country or city..."
         searchBar.font = UIFont(name: "Helvetica", size: 15)
         searchBar.clearButtonMode = .whileEditing
         searchBar.tintColor = mainColor
