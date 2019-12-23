@@ -33,6 +33,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private var forgotPassButton = UIButton()
     private var footerLabel = UILabel()
     private var createAccountButton = UIButton()
+    var iconView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +41,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         navigationController?.navigationBar.isHidden = true
         createBackGround()
         //createTouristONLabel()
-        //        createEmailTextField()
-        //        createPasswordTextField()
+        //createEmailTextField()
+        //createPasswordTextField()
         createHeadLabel()
         createSubLabel()
         createSignInButton()
@@ -91,21 +92,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
         createPasswordTextField()
     }
     
-//    private func createTouristONLabel() {
-//                touristONLabel.frame = CGRect(x: 87.5, y: 120, width: 200, height: 50)
-//                touristONLabel.text = "Logo"
-//                touristONLabel.textAlignment = .center
-//                touristONLabel.backgroundColor = .blue
-//                touristONLabel.font = UIFont(name: "AppleMyungjo", size: 38)
-//                touristONLabel.font = UIFont.boldSystemFont(ofSize: 35)
-//                touristONLabel.textColor = .black
-//                view.addSubview(touristONLabel)
-//        logo.frame = CGRect(x: view.center.x - 35, y: view.frame.minY + 100, width: 70, height: 75)
-//        logo.alpha = 0.7
-//        logo.backgroundColor = .black
-//        logo.sizeToFit()
-//        view.addSubview(logo)
-//    }
+    //    private func createTouristONLabel() {
+    //    touristONLabel.frame = CGRect(x: 87.5, y: 120, width: 200, height: 50)
+    //    touristONLabel.text = "Logo"
+    //    touristONLabel.textAlignment = .center
+    //    touristONLabel.backgroundColor = .blue
+    //    touristONLabel.font = UIFont(name: "AppleMyungjo", size: 38)
+    //    touristONLabel.font = UIFont.boldSystemFont(ofSize: 35)
+    //    touristONLabel.textColor = .black
+    //    view.addSubview(touristONLabel)
+    //    logo.frame = CGRect(x: view.center.x - 35, y: view.frame.minY + 100, width: 70, height: 75)
+    //    logo.alpha = 0.7
+    //    logo.backgroundColor = .black
+    //    logo.sizeToFit()
+    //    view.addSubview(logo)
+    //    }
     
     private func createEmailView() {
         emailView.frame = CGRect(x: 20, y: 325, width: 330, height: 70)
@@ -137,7 +138,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func createEmailTextField() {
-        emailTextField.frame = CGRect(x: 100, y: 357, width: 240, height: 30)
+        emailTextField.frame = CGRect(x: 20, y: 342, width: 330, height: 60)
+        //emailTextField.frame = CGRect(x: 100, y: 357, width: 240, height: 30)
+//        emailTextField.textRect(forBounds: CGRect(x: 100, y: 400, width: 240, height: 30))
+//        emailTextField.editingRect(forBounds: CGRect(x: 100, y: 400, width: 240, height: 30))
+        emailTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 0))
+        emailTextField.leftViewMode = .whileEditing
         emailTextField.keyboardAppearance = .dark
         emailTextField.keyboardType = .emailAddress
         emailTextField.autocapitalizationType = .none
@@ -179,7 +185,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func createPasswordTextField() {
-        passwordTextField.frame = CGRect(x: 100, y: 442, width: 240, height: 30)
+        passwordTextField.frame = CGRect(x: 20, y: 428, width: 330, height: 60)
+        //passwordTextField.frame = CGRect(x: 100, y: 442, width: 240, height: 30)
+        passwordTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 0))
+        passwordTextField.leftViewMode = .whileEditing
         passwordTextField.keyboardAppearance = .dark
         passwordTextField.isSecureTextEntry = true
         passwordTextField.autocapitalizationType = .none
@@ -188,13 +197,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.returnKeyType = .done
         passwordTextField.textColor = .white
         passwordTextField.tintColor = mainColor
-        //        emailTextField.backgroundColor = .orange
+        //emailTextField.backgroundColor = .orange
         passwordTextField.delegate = self
         view.addSubview(passwordTextField)
     }
     
-    private func createForgotPassButton(){
-        forgotPassButton.frame = CGRect(x: 214, y: 485, width: 150, height: 20)
+    private func createForgotPassButton() {
+        forgotPassButton.frame = CGRect(x: 214, y: 490, width: 150, height: 20)
         forgotPassButton.setTitle("Forgot Password", for: .normal)
         forgotPassButton.setTitleColor(.white, for: .normal)
         forgotPassButton.titleLabel?.font = UIFont(name: "Georgia", size: 15)
@@ -202,11 +211,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(forgotPassButton)
     }
     
-    @objc func pushToForgotPassVC(){
+    @objc func pushToForgotPassVC() {
         print("Forgot")
     }
     
-    private func createFooterLabel(){
+    private func createFooterLabel() {
         footerLabel.frame = CGRect(x: 0, y: 685, width: view.frame.size.width, height: 20)
         footerLabel.textAlignment = .center
         footerLabel.text = "Don't have an account?"
@@ -215,7 +224,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(footerLabel)
     }
     
-    private func createAcBut(){
+    private func createAcBut() {
         createAccountButton.frame = CGRect(x: 0, y: 705, width: view.frame.size.width, height: 20)
         createAccountButton.setTitle("create now", for: .normal)
         createAccountButton.setTitleColor(mainColor, for: .normal)
@@ -223,7 +232,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         createAccountButton.addTarget(self, action: #selector(pushToCreateAccountVC), for: .touchUpInside)
         view.addSubview(createAccountButton)
     }
-    @objc func pushToCreateAccountVC(){
+    
+    @objc func pushToCreateAccountVC() {
         print("Create")
     }
     //    private func createEmailTextField() {
@@ -266,12 +276,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     //        view.addSubview(passwordTextField)
     //    }
     
-//    private func createForgotButton() {
-//        forgotPasswordButton.frame = CGRect(x: 400, y: 450, width: 0, height: 0)
-//        forgotPasswordButton.setTitle("Forgot Password", for: .normal)
-//        forgotPasswordButton.sizeToFit()
-//        view.addSubview(forgotPasswordButton)
-//    }
+    //    private func createForgotButton() {
+    //        forgotPasswordButton.frame = CGRect(x: 400, y: 450, width: 0, height: 0)
+    //        forgotPasswordButton.setTitle("Forgot Password", for: .normal)
+    //        forgotPasswordButton.sizeToFit()
+    //        view.addSubview(forgotPasswordButton)
+    //    }
     
     private func createSignInButton() {
         signInButton.frame = CGRect(x: 0, y: view.frame.maxY - 70, width: view.frame.size.width, height: 70)
@@ -303,4 +313,3 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
 }
-
