@@ -33,7 +33,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private var forgotPassButton = UIButton()
     private var footerLabel = UILabel()
     private var createAccountButton = UIButton()
-    var iconView = UIView()
+    private var iconView = UIView()
+    private var lockEye = UIButton()
+    private var example = UIImageView()
+    private var exampleLogo = UIImage(named: "logoT")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,14 +46,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
         //createTouristONLabel()
         //createEmailTextField()
         //createPasswordTextField()
-        createHeadLabel()
-        createSubLabel()
+        //createHeadLabel()
+        //createSubLabel()
         createSignInButton()
         createEmail()
         createPassword()
+        createLockEye()
         createForgotPassButton()
         createFooterLabel()
         createAcBut()
+        example.frame = CGRect(x: 130, y: 80, width: 130, height: 140)
+        example.image = exampleLogo
+        view.addSubview(example)
     }
     
     private func createBackGround() {
@@ -143,7 +150,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //        emailTextField.textRect(forBounds: CGRect(x: 100, y: 400, width: 240, height: 30))
 //        emailTextField.editingRect(forBounds: CGRect(x: 100, y: 400, width: 240, height: 30))
         emailTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 0))
-        emailTextField.leftViewMode = .whileEditing
+        emailTextField.leftViewMode = .always
         emailTextField.keyboardAppearance = .dark
         emailTextField.keyboardType = .emailAddress
         emailTextField.autocapitalizationType = .none
@@ -188,18 +195,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.frame = CGRect(x: 20, y: 428, width: 330, height: 60)
         //passwordTextField.frame = CGRect(x: 100, y: 442, width: 240, height: 30)
         passwordTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 0))
-        passwordTextField.leftViewMode = .whileEditing
+        passwordTextField.leftViewMode = .always
         passwordTextField.keyboardAppearance = .dark
         passwordTextField.isSecureTextEntry = true
         passwordTextField.autocapitalizationType = .none
         passwordTextField.autocorrectionType = .no
-        passwordTextField.clearButtonMode = .whileEditing
         passwordTextField.returnKeyType = .done
         passwordTextField.textColor = .white
         passwordTextField.tintColor = mainColor
         //emailTextField.backgroundColor = .orange
         passwordTextField.delegate = self
         view.addSubview(passwordTextField)
+    }
+    
+    private func createLockEye() {
+        lockEye.frame = CGRect(x: passwordTextField.frame.maxX - 40, y: passwordTextField.frame.minY + 18, width: 25, height: 25)
+        lockEye.setImage(UIImage(named: "unlock"), for: .normal)
+        lockEye.addTarget(self, action: #selector(eye), for: .touchUpInside)
+        view.addSubview(lockEye)
     }
     
     private func createForgotPassButton() {
@@ -305,6 +318,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
+    }
+    
+    @objc func eye() {
+        if lockEye.currentImage == UIImage(named: "unlock") {
+            lockEye.setImage(UIImage(named: "lock"), for: .normal)
+            self.passwordTextField.isSecureTextEntry = false
+        } else {
+            lockEye.setImage(UIImage(named: "unlock"), for: .normal)
+            passwordTextField.isSecureTextEntry = true
+        }
     }
     
     @objc func push() {
