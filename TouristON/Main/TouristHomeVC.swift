@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TouristHomeVC: UIViewController{
+class TouristHomeVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
     
     private var mainColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
     var headImageView = UIImageView()
@@ -16,14 +16,17 @@ class TouristHomeVC: UIViewController{
     var button = UIButton()
     var searchView = UIView()
     var searchLabel = UILabel()
-    var searchBar = UITextField()
+    var searchBar = CustomTextField()
     var headLabel = UILabel()
     var subLabel = UILabel()
     var searchLine = UIView()
     var searchImage = UIImageView()
+    var countriesColView = UICollectionView()
+    var colViewLayout = UICollectionViewLayout()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       // createCountriesCollection()
         createHeadImage()
         createAccountButton()
         createHeadLabel()
@@ -69,7 +72,7 @@ class TouristHomeVC: UIViewController{
     }
     
     func createSearchView(){
-        searchView.frame = CGRect(x: view.bounds.minX + 20, y: view.bounds.minY + 230, width: view.frame.maxX - 40, height: 60)
+        searchView.frame = CGRect(x: view.bounds.minX + 20, y: view.bounds.minY + 225, width: view.frame.maxX - 40, height: 70)
         searchView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         searchView.layer.borderColor = mainColor.cgColor
         searchView.layer.borderWidth = 1
@@ -79,7 +82,7 @@ class TouristHomeVC: UIViewController{
     }
     
     func createSearchImage(){
-        searchImage.frame = CGRect(x: searchView.frame.minX + 17, y: searchView.frame.minY + 14, width: 32, height: 32)
+        searchImage.frame = CGRect(x: searchView.frame.minX + 17, y: searchView.frame.minY + 19, width: 32, height: 32)
         searchImage.image = UIImage(named: "search")
         view.addSubview(searchImage)
     }
@@ -91,7 +94,7 @@ class TouristHomeVC: UIViewController{
     }
     
     func createSearchLabel(){
-        searchLabel.frame = CGRect(x: Int(searchView.frame.minX + 80), y: Int(searchView.frame.minY + 12), width: 200, height: 15)
+        searchLabel.frame = CGRect(x: Int(searchView.frame.minX + 80), y: Int(searchView.frame.minY + 14), width: 200, height: 15)
         searchLabel.textColor = mainColor
         searchLabel.text = "Search your destination"
         searchLabel.font = UIFont(name: "Helvetica", size: 14)
@@ -99,8 +102,7 @@ class TouristHomeVC: UIViewController{
     }
     
     func createSearchBar(){
-        searchBar.frame = CGRect(x: Int(searchView.frame.minX + 80), y: Int(searchView.frame.minY + 34), width: 255, height: 18)
-//        searchBar.backgroundColor = .red
+        searchBar.frame = searchView.frame
         searchBar.placeholder = "country or city..."
         searchBar.font = UIFont(name: "Helvetica", size: 15)
         searchBar.clearButtonMode = .whileEditing
@@ -124,5 +126,23 @@ class TouristHomeVC: UIViewController{
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         searchBar.resignFirstResponder()
+    }
+    
+    func createCountriesCollection(){
+        countriesColView.collectionViewLayout = colViewLayout
+        countriesColView.frame = CGRect(x: 40, y: 260, width: 334, height: 620)
+        countriesColView.delegate = self
+        countriesColView.dataSource = self
+        view.addSubview(countriesColView)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+
+        return cell
     }
 }

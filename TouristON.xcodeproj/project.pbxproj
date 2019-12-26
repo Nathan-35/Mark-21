@@ -11,6 +11,7 @@
 		545A0E08239800B300D16B3C /* OffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545A0E07239800B300D16B3C /* OffersViewController.swift */; };
 		545A0E0A239800BE00D16B3C /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545A0E09239800BE00D16B3C /* FavouritesViewController.swift */; };
 		545A0E0D2398092600D16B3C /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545A0E0C2398092600D16B3C /* TestViewController.swift */; };
+		54E9ABB823B50E6D00EE9481 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E9ABB723B50E6D00EE9481 /* CustomTextField.swift */; };
 		D8304B432393B92500AD76A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304B422393B92500AD76A5 /* AppDelegate.swift */; };
 		D8304B452393B92500AD76A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304B442393B92500AD76A5 /* SceneDelegate.swift */; };
 		D8304B472393B92500AD76A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304B462393B92500AD76A5 /* ViewController.swift */; };
@@ -25,6 +26,7 @@
 		545A0E07239800B300D16B3C /* OffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewController.swift; sourceTree = "<group>"; };
 		545A0E09239800BE00D16B3C /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		545A0E0C2398092600D16B3C /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		54E9ABB723B50E6D00EE9481 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		D8304B3F2393B92500AD76A5 /* TouristON.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouristON.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8304B422393B92500AD76A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8304B442393B92500AD76A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				D8304B422393B92500AD76A5 /* AppDelegate.swift */,
 				D8304B442393B92500AD76A5 /* SceneDelegate.swift */,
 				D8304B462393B92500AD76A5 /* ViewController.swift */,
+				54E9ABB723B50E6D00EE9481 /* CustomTextField.swift */,
 				545A0E0B239800D700D16B3C /* Main */,
 				D8304B482393B92500AD76A5 /* Main.storyboard */,
 				D8304B4B2393B92600AD76A5 /* Assets.xcassets */,
@@ -169,6 +172,7 @@
 				D8304B452393B92500AD76A5 /* SceneDelegate.swift in Sources */,
 				545A0E0A239800BE00D16B3C /* FavouritesViewController.swift in Sources */,
 				545A0E06239800A700D16B3C /* TouristHomeVC.swift in Sources */,
+				54E9ABB823B50E6D00EE9481 /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

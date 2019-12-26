@@ -17,8 +17,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private var emailIcon = UIImage(named: "emailIcon")
     private var passwordIcon = UIImage(named: "lockIcon")
     private var imageView = UIImageView()
-    private var emailTextField = UITextField()
-    private var passwordTextField = UITextField()
+    private var emailTextField = CustomTextField()
+    private var passwordTextField = CustomTextField()
     private var signInButton = UIButton()
     private var emailView = UIView()
     private var passwordView = UIView()
@@ -145,12 +145,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func createEmailTextField() {
-        emailTextField.frame = CGRect(x: 20, y: 342, width: 330, height: 60)
-        //emailTextField.frame = CGRect(x: 100, y: 357, width: 240, height: 30)
-//        emailTextField.textRect(forBounds: CGRect(x: 100, y: 400, width: 240, height: 30))
-//        emailTextField.editingRect(forBounds: CGRect(x: 100, y: 400, width: 240, height: 30))
-        emailTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 0))
-        emailTextField.leftViewMode = .always
+        emailTextField.frame = CGRect(x: 20, y: 325, width: 330, height: 70)
         emailTextField.keyboardAppearance = .dark
         emailTextField.keyboardType = .emailAddress
         emailTextField.autocapitalizationType = .none
@@ -192,10 +187,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func createPasswordTextField() {
-        passwordTextField.frame = CGRect(x: 20, y: 428, width: 330, height: 60)
-        //passwordTextField.frame = CGRect(x: 100, y: 442, width: 240, height: 30)
-        passwordTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 0))
-        passwordTextField.leftViewMode = .always
+        passwordTextField.frame = CGRect(x: 20, y: 410, width: 330, height: 70)
         passwordTextField.keyboardAppearance = .dark
         passwordTextField.isSecureTextEntry = true
         passwordTextField.autocapitalizationType = .none
@@ -209,7 +201,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func createLockEye() {
-        lockEye.frame = CGRect(x: passwordTextField.frame.maxX - 40, y: passwordTextField.frame.minY + 18, width: 25, height: 25)
+        lockEye.frame = CGRect(x: passwordTextField.frame.maxX - 40, y: passwordTextField.frame.minY + 34, width: 25, height: 25)
         lockEye.setImage(UIImage(named: "unlock"), for: .normal)
         lockEye.addTarget(self, action: #selector(eye), for: .touchUpInside)
         view.addSubview(lockEye)
