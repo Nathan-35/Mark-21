@@ -20,8 +20,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private var emailTextField = CustomTextField()
     private var passwordTextField = CustomTextField()
     private var signInButton = UIButton()
-    private var emailView = UIView()
-    private var passwordView = UIView()
+    private var emailView = AnimatedView()
+    private var passwordView = AnimatedView()
     private var emailLabel = UILabel()
     private var passwordLabel = UILabel()
     private var emailImage = UIImageView()
@@ -34,7 +34,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private var footerLabel = UILabel()
     private var createAccountButton = UIButton()
     private var iconView = UIView()
-    private var lockEye = UIButton()
+    private var lockEye = AnimatedButton()
     private var example = UIImageView()
     private var exampleLogo = UIImage(named: "logoT")
     
@@ -154,6 +154,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         emailTextField.returnKeyType = .next
         emailTextField.textColor = .white
         emailTextField.tintColor = mainColor
+        emailTextField.addTarget(self, action: #selector(tap), for: .touchDown)
         emailTextField.delegate = self
         view.addSubview(emailTextField)
     }
@@ -195,7 +196,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.returnKeyType = .done
         passwordTextField.textColor = .white
         passwordTextField.tintColor = mainColor
-        //emailTextField.backgroundColor = .orange
+        passwordTextField.addTarget(self, action: #selector(tap2), for: .touchDown)
         passwordTextField.delegate = self
         view.addSubview(passwordTextField)
     }
@@ -204,6 +205,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         lockEye.frame = CGRect(x: passwordTextField.frame.maxX - 40, y: passwordTextField.frame.minY + 34, width: 25, height: 25)
         lockEye.setImage(UIImage(named: "unlock"), for: .normal)
         lockEye.addTarget(self, action: #selector(eye), for: .touchUpInside)
+        lockEye.addTarget(self, action: #selector(eyeTap), for: .touchUpInside)
         view.addSubview(lockEye)
     }
     
@@ -216,9 +218,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(forgotPassButton)
     }
     
-    @objc func pushToForgotPassVC() {
-        print("Forgot")
-    }
+    
     
     private func createFooterLabel() {
         footerLabel.frame = CGRect(x: 0, y: 685, width: view.frame.size.width, height: 20)
@@ -238,9 +238,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(createAccountButton)
     }
     
-    @objc func pushToCreateAccountVC() {
-        print("Create")
-    }
+    
     //    private func createEmailTextField() {
     //        emailTextField.frame = CGRect(x: view.frame.minX + 15, y: 350, width: view.frame.maxX - 30, height: 50)
     //        emailTextField.placeholder = "Email"
@@ -293,13 +291,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         signInButton.setTitle("Sign in", for: .normal)
         signInButton.backgroundColor = mainColor
         signInButton.titleLabel?.font = UIFont(name: "Georgia", size: 16)
-        signInButton.addTarget(self, action: #selector(push), for: .touchUpInside)
+        signInButton.addTarget(self, action: #selector(pushToMain), for: .touchUpInside)
         view.addSubview(signInButton)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case emailTextField:
+            passwordView.pulsate()
             passwordTextField.becomeFirstResponder()
         default:
             textField.resignFirstResponder()
@@ -322,9 +321,46 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @objc func push() {
-        let mainVC = MainVC()
-        navigationController?.pushViewController(mainVC, animated: true)
+    @objc func pushToMain() {
+           let mainVC = MainVC()
+           navigationController?.pushViewController(mainVC, animated: true)
+       }
+    
+    @objc func pushToForgotPassVC() {
+        print("Forgot")
     }
     
+    @objc func pushToCreateAccountVC() {
+        print("Create")
+    }
+    
+    @objc func tap(){
+        emailView.pulsate()
+    }
+    
+    @objc func tap2(){
+        passwordView.pulsate()
+    }
+    
+    @objc func eyeTap(){
+        lockEye.pulsate()
+    }
+    
+}
+
+
+class AnimatedButton : UIButton{
+    
+    func pulsate(){
+
+        let pulse = CASpringAnimation(keyPath: "transform.scale")
+        pulse.duration = 0.2
+        pulse.fromValue = 0.90
+        pulse.toValue = 1.0
+        pulse.autoreverses = false
+        pulse.repeatCount = 0
+        pulse.initialVelocity = 0.5
+        pulse.damping = 1.0
+        layer.add(pulse, forKey: "pulse")
+    }
 }

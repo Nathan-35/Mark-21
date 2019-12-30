@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TouristHomeVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
+class TouristHomeVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     private var mainColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
     var headImageView = UIImageView()
@@ -21,12 +21,12 @@ class TouristHomeVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     var subLabel = UILabel()
     var searchLine = UIView()
     var searchImage = UIImageView()
-    var countriesColView = UICollectionView()
-    var colViewLayout = UICollectionViewLayout()
+    var countriesColView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+    var cellId = "cell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // createCountriesCollection()
+        createCountriesCollection()
         createHeadImage()
         createAccountButton()
         createHeadLabel()
@@ -120,8 +120,8 @@ class TouristHomeVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     
     
     @objc func go(){
-        let testVC = TestViewController()
-        navigationController?.pushViewController(testVC, animated: true)
+        let accountVC = AccountViewController()
+        navigationController?.pushViewController(accountVC, animated: true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -129,20 +129,48 @@ class TouristHomeVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     }
     
     func createCountriesCollection(){
-        countriesColView.collectionViewLayout = colViewLayout
-        countriesColView.frame = CGRect(x: 40, y: 260, width: 334, height: 620)
+        countriesColView.frame = CGRect(x: 0, y: 290, width: view.frame.width, height: 500)
+        countriesColView.register(CountryCell.self, forCellWithReuseIdentifier: cellId)
+        countriesColView.backgroundColor = .white
         countriesColView.delegate = self
         countriesColView.dataSource = self
         view.addSubview(countriesColView)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 20
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CountryCell
         return cell
+    }
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (view.frame.width / 2) - 60 , height: 110)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 20, left: 50, bottom: 0, right: 50)
+
+    }
+    
+}
+
+class CountryCell : UICollectionViewCell{
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    func setup() {
+        self.backgroundColor = .red
+        self.layer.cornerRadius = 15
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

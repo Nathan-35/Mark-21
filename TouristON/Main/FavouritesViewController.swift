@@ -29,7 +29,7 @@ class FavouritesViewController: UIViewController {
         view.addSubview(button)
     }
        @objc func go(){
-           let testVC = TestViewController()
-           navigationController?.pushViewController(testVC, animated: true)
+           let accountVC = AccountViewController()
+           navigationController?.pushViewController(accountVC, animated: true)
        }
 }
