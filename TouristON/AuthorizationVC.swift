@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class AuthorizationVC: UIViewController, UITextFieldDelegate {
     
     private var mainColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
     private var logo = UIImageView(image: UIImage(named: "hot-air-balloon-2"))
@@ -55,9 +55,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         createForgotPassButton()
         createFooterLabel()
         createAcBut()
-        example.frame = CGRect(x: 130, y: 80, width: 130, height: 140)
-        example.image = exampleLogo
-        view.addSubview(example)
+//        example.frame = CGRect(x: 130, y: 80, width: 130, height: 140)
+//        example.image = exampleLogo
+//        view.addSubview(example)
     }
     
     private func createBackGround() {
@@ -127,7 +127,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         emailLabel.frame = CGRect(x: 100, y: 335, width: 0, height: 0)
         emailLabel.text = "E-mail"
         emailLabel.textColor = mainColor
-        emailLabel.font = UIFont(name: "Georgia", size: 18)
+        emailLabel.font = UIFont(name: "Georgia", size: 16)
         emailLabel.sizeToFit()
         view.addSubview(emailLabel)
     }
@@ -171,7 +171,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         passwordLabel.frame = CGRect(x: 100, y: 420, width: 250, height: 20)
         passwordLabel.text = "Password"
         passwordLabel.textColor = mainColor
-        passwordLabel.font = UIFont(name: "Georgia", size: 18)
+        passwordLabel.font = UIFont(name: "Georgia", size: 16)
         view.addSubview(passwordLabel)
     }
     
@@ -214,7 +214,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         forgotPassButton.setTitle("Forgot Password", for: .normal)
         forgotPassButton.setTitleColor(.white, for: .normal)
         forgotPassButton.titleLabel?.font = UIFont(name: "Georgia", size: 15)
-        forgotPassButton.addTarget(self, action: #selector(pushToForgotPassVC), for: .touchUpInside)
+        forgotPassButton.addTarget(self, action: #selector(pushRegistrationVC), for: .touchUpInside)
         view.addSubview(forgotPassButton)
     }
     
@@ -326,8 +326,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
            navigationController?.pushViewController(mainVC, animated: true)
        }
     
-    @objc func pushToForgotPassVC() {
-        print("Forgot")
+    @objc func pushRegistrationVC() {
+        let pushRVC = RegistrationVC()
+        navigationController?.pushViewController(pushRVC, animated: true)
     }
     
     @objc func pushToCreateAccountVC() {
@@ -349,10 +350,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
 }
 
 
-class AnimatedButton : UIButton{
+class AnimatedButton: UIButton{
     
-    func pulsate(){
-
+    func pulsate() {
         let pulse = CASpringAnimation(keyPath: "transform.scale")
         pulse.duration = 0.2
         pulse.fromValue = 0.90
@@ -363,4 +363,5 @@ class AnimatedButton : UIButton{
         pulse.damping = 1.0
         layer.add(pulse, forKey: "pulse")
     }
+    
 }

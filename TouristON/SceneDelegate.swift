@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //guard let _ = (scene as? UIWindowScene) else { return }
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            let viewController = ViewController()
+            let viewController = AuthorizationVC()
             let navigation = UINavigationController(rootViewController: viewController)
             window.rootViewController = navigation
             self.window = window
