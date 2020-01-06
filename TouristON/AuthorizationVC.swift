@@ -214,12 +214,9 @@ class AuthorizationVC: UIViewController, UITextFieldDelegate {
         forgotPassButton.setTitle("Forgot Password", for: .normal)
         forgotPassButton.setTitleColor(.white, for: .normal)
         forgotPassButton.titleLabel?.font = UIFont(name: "Georgia", size: 15)
-        forgotPassButton.addTarget(self, action: #selector(pushRegistrationVC), for: .touchUpInside)
         view.addSubview(forgotPassButton)
     }
-    
-    
-    
+  
     private func createFooterLabel() {
         footerLabel.frame = CGRect(x: 0, y: 685, width: view.frame.size.width, height: 20)
         footerLabel.textAlignment = .center
@@ -234,10 +231,9 @@ class AuthorizationVC: UIViewController, UITextFieldDelegate {
         createAccountButton.setTitle("create now", for: .normal)
         createAccountButton.setTitleColor(mainColor, for: .normal)
         createAccountButton.titleLabel?.font = UIFont(name: "Georgia", size: 15)
-        createAccountButton.addTarget(self, action: #selector(pushToCreateAccountVC), for: .touchUpInside)
+        createAccountButton.addTarget(self, action: #selector(pushRegistrationVC), for: .touchUpInside)
         view.addSubview(createAccountButton)
     }
-    
     
     //    private func createEmailTextField() {
     //        emailTextField.frame = CGRect(x: view.frame.minX + 15, y: 350, width: view.frame.maxX - 30, height: 50)
@@ -331,10 +327,6 @@ class AuthorizationVC: UIViewController, UITextFieldDelegate {
         navigationController?.pushViewController(pushRVC, animated: true)
     }
     
-    @objc func pushToCreateAccountVC() {
-        print("Create")
-    }
-    
     @objc func tap(){
         emailView.pulsate()
     }
@@ -349,8 +341,7 @@ class AuthorizationVC: UIViewController, UITextFieldDelegate {
     
 }
 
-
-class AnimatedButton: UIButton{
+class AnimatedButton: UIButton {
     
     func pulsate() {
         let pulse = CASpringAnimation(keyPath: "transform.scale")

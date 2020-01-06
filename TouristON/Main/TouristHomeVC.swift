@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TouristHomeVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+class TouristHomeVC: UIViewController, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     private var mainColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
     var headImageView = UIImageView()
@@ -107,6 +107,8 @@ class TouristHomeVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         searchBar.font = UIFont(name: "Helvetica", size: 15)
         searchBar.clearButtonMode = .whileEditing
         searchBar.tintColor = mainColor
+        searchBar.keyboardAppearance = .dark
+        searchBar.delegate = self
         view.addSubview(searchBar)
     }
     
@@ -155,6 +157,11 @@ class TouristHomeVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 20, left: 50, bottom: 0, right: 50)
 
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchBar.resignFirstResponder()
+        return true
     }
     
 }
