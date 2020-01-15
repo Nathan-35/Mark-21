@@ -14,7 +14,7 @@ class TouristHomeVC: UIViewController, UITextFieldDelegate, UICollectionViewDele
     var headImageView = UIImageView()
     var headImage = UIImage(named: "mainHead")
     var button = UIButton()
-    var searchView = UIView()
+    var searchView = AnimatedView()
     var searchLabel = UILabel()
     var searchBar = CustomTextField()
     var headLabel = UILabel()
@@ -109,6 +109,7 @@ class TouristHomeVC: UIViewController, UITextFieldDelegate, UICollectionViewDele
         searchBar.tintColor = mainColor
         searchBar.keyboardAppearance = .dark
         searchBar.delegate = self
+        searchBar.addTarget(self, action: #selector(tap), for: .touchDown)
         view.addSubview(searchBar)
     }
     
@@ -162,6 +163,10 @@ class TouristHomeVC: UIViewController, UITextFieldDelegate, UICollectionViewDele
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         searchBar.resignFirstResponder()
         return true
+    }
+    
+    @objc func tap(){
+        searchView.pulsate()
     }
     
 }

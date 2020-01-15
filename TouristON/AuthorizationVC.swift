@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class AuthorizationVC: UIViewController, UITextFieldDelegate {
     
@@ -46,8 +48,8 @@ class AuthorizationVC: UIViewController, UITextFieldDelegate {
         //createTouristONLabel()
         //createEmailTextField()
         //createPasswordTextField()
-        //createHeadLabel()
-        //createSubLabel()
+        createHeadLabel()
+        createSubLabel()
         createSignInButton()
         createEmail()
         createPassword()
@@ -55,9 +57,9 @@ class AuthorizationVC: UIViewController, UITextFieldDelegate {
         createForgotPassButton()
         createFooterLabel()
         createAcBut()
-//        example.frame = CGRect(x: 130, y: 80, width: 130, height: 140)
-//        example.image = exampleLogo
-//        view.addSubview(example)
+        //        example.frame = CGRect(x: 130, y: 80, width: 130, height: 140)
+        //        example.image = exampleLogo
+        //        view.addSubview(example)
     }
     
     private func createBackGround() {
@@ -99,21 +101,21 @@ class AuthorizationVC: UIViewController, UITextFieldDelegate {
         createPasswordTextField()
     }
     
-    //    private func createTouristONLabel() {
-    //    touristONLabel.frame = CGRect(x: 87.5, y: 120, width: 200, height: 50)
-    //    touristONLabel.text = "Logo"
-    //    touristONLabel.textAlignment = .center
-    //    touristONLabel.backgroundColor = .blue
-    //    touristONLabel.font = UIFont(name: "AppleMyungjo", size: 38)
-    //    touristONLabel.font = UIFont.boldSystemFont(ofSize: 35)
-    //    touristONLabel.textColor = .black
-    //    view.addSubview(touristONLabel)
-    //    logo.frame = CGRect(x: view.center.x - 35, y: view.frame.minY + 100, width: 70, height: 75)
-    //    logo.alpha = 0.7
-    //    logo.backgroundColor = .black
-    //    logo.sizeToFit()
-    //    view.addSubview(logo)
-    //    }
+//        private func createTouristONLabel() {
+//        touristONLabel.frame = CGRect(x: 87.5, y: 120, width: 200, height: 50)
+//        touristONLabel.text = "Logo"
+//        touristONLabel.textAlignment = .center
+//        touristONLabel.backgroundColor = .blue
+//        touristONLabel.font = UIFont(name: "AppleMyungjo", size: 38)
+//        touristONLabel.font = UIFont.boldSystemFont(ofSize: 35)
+//        touristONLabel.textColor = .black
+//        view.addSubview(touristONLabel)
+//        logo.frame = CGRect(x: view.center.x - 35, y: view.frame.minY + 100, width: 70, height: 75)
+//        logo.alpha = 0.7
+//        logo.backgroundColor = .black
+//        logo.sizeToFit()
+//        view.addSubview(logo)
+//        }
     
     private func createEmailView() {
         emailView.frame = CGRect(x: 20, y: 325, width: 330, height: 70)
@@ -211,12 +213,12 @@ class AuthorizationVC: UIViewController, UITextFieldDelegate {
     
     private func createForgotPassButton() {
         forgotPassButton.frame = CGRect(x: 214, y: 490, width: 150, height: 20)
-        forgotPassButton.setTitle("Forgot Password", for: .normal)
+        forgotPassButton.setTitle("Forgot Password?", for: .normal)
         forgotPassButton.setTitleColor(.white, for: .normal)
         forgotPassButton.titleLabel?.font = UIFont(name: "Georgia", size: 15)
         view.addSubview(forgotPassButton)
     }
-  
+    
     private func createFooterLabel() {
         footerLabel.frame = CGRect(x: 0, y: 685, width: view.frame.size.width, height: 20)
         footerLabel.textAlignment = .center
@@ -288,6 +290,7 @@ class AuthorizationVC: UIViewController, UITextFieldDelegate {
         signInButton.backgroundColor = mainColor
         signInButton.titleLabel?.font = UIFont(name: "Georgia", size: 16)
         signInButton.addTarget(self, action: #selector(pushToMain), for: .touchUpInside)
+//        signInButton.addTarget(self, action: #selector(pushRegistrationVC), for: .touchUpInside)
         view.addSubview(signInButton)
     }
     
@@ -318,9 +321,16 @@ class AuthorizationVC: UIViewController, UITextFieldDelegate {
     }
     
     @objc func pushToMain() {
-           let mainVC = MainVC()
-           navigationController?.pushViewController(mainVC, animated: true)
-       }
+                   let mainVC = MainVC()
+                   navigationController?.pushViewController(mainVC, animated: true)
+//        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (result, error) in
+//            if error != nil {
+//                print("some sign in error...")
+//            } else {
+//                print("Jump to the next screen")
+//            }
+//        }
+    }
     
     @objc func pushRegistrationVC() {
         let pushRVC = RegistrationVC()
