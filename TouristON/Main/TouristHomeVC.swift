@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TouristHomeVC: UIViewController, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+class TouristHomeVC: UIViewController, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource, CustomLayoutDelegate{
     
     private var mainColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
     var headImageView = UIImageView()
@@ -22,11 +22,28 @@ class TouristHomeVC: UIViewController, UITextFieldDelegate, UICollectionViewDele
     var searchLine = UIView()
     var searchImage = UIImageView()
     var countriesColView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+    var customCollectionViewLayout = CustomCollectionViewLayout()
     var cellId = "cell"
+    
+    struct Model {
+        var index: Int
+        var isBig: Bool
+    }
+    private var countries = ["Canada","Emirates","France","Germany",
+                             "Italy","Japan","Portugal","Russia",
+                             "Spain","Tailand", "UK", "USA"]
+    
+    private let dataSet = [Model(index: 1, isBig: false), Model(index: 2, isBig: true), Model(index: 3, isBig: true),
+                           Model(index: 4, isBig: false), Model(index: 5, isBig: true), Model(index: 6, isBig: false),
+                           Model(index: 7, isBig: false), Model(index: 8, isBig: true), Model(index: 9, isBig: true),
+                           Model(index: 10, isBig: false), Model(index: 11, isBig: false), Model(index: 12, isBig: true)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createCountriesCollection()
+        customCollectionViewLayout.delegate = self
+        customCollectionViewLayout.numberOfColumns = 2
+        countriesColView.collectionViewLayout = customCollectionViewLayout
         createHeadImage()
         createAccountButton()
         createHeadLabel()
@@ -132,32 +149,31 @@ class TouristHomeVC: UIViewController, UITextFieldDelegate, UICollectionViewDele
     }
     
     func createCountriesCollection(){
-        countriesColView.frame = CGRect(x: 0, y: 290, width: view.frame.width, height: 500)
+        countriesColView.frame = CGRect(x: 30, y: 290, width: view.frame.width - 60, height: 500)
         countriesColView.register(CountryCell.self, forCellWithReuseIdentifier: cellId)
         countriesColView.backgroundColor = .white
         countriesColView.delegate = self
         countriesColView.dataSource = self
+        countriesColView.showsVerticalScrollIndicator = false
         view.addSubview(countriesColView)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return dataSet.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CountryCell
+        cell.backgroundView = UIImageView(image: UIImage(named: countries[indexPath.row]))
+        cell.clipsToBounds = true
+        
+        cell.layer.cornerRadius = 13
         return cell
     }
     
-    
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (view.frame.width / 2) - 60 , height: 110)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 20, left: 50, bottom: 0, right: 50)
-
+    func collectionView(_ collectionView: UICollectionView, heightForItemAt indexPath: IndexPath, with width: CGFloat) -> CGFloat {
+            let heightSizes = [120,216]
+            return CGFloat(heightSizes[dataSet[indexPath.row].isBig ? 1 : 0])
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -178,8 +194,7 @@ class CountryCell : UICollectionViewCell{
     }
     
     func setup() {
-        self.backgroundColor = .red
-        self.layer.cornerRadius = 15
+        //self.layer.cornerRadius = 13
     }
     
     required init?(coder: NSCoder) {
