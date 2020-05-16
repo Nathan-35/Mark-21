@@ -24,14 +24,16 @@ class TouristHomeVC: UIViewController, UITextFieldDelegate, UICollectionViewDele
     var countriesColView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
     var customCollectionViewLayout = CustomCollectionViewLayout()
     var cellId = "cell"
+    var choosedVC = ChoosedCountryVC()
+    
     
     struct Model {
         var index: Int
         var isBig: Bool
     }
-    private var countries = ["Canada","Emirates","France","Germany",
+    private var countries = ["USA","Emirates","France","Germany",
                              "Italy","Japan","Portugal","Russia",
-                             "Spain","Tailand", "UK", "USA"]
+                             "Spain","Tailand", "UK", "Canada"]
     
     private let dataSet = [Model(index: 1, isBig: false), Model(index: 2, isBig: true), Model(index: 3, isBig: true),
                            Model(index: 4, isBig: false), Model(index: 5, isBig: true), Model(index: 6, isBig: false),
@@ -40,12 +42,13 @@ class TouristHomeVC: UIViewController, UITextFieldDelegate, UICollectionViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         createCountriesCollection()
         customCollectionViewLayout.delegate = self
         customCollectionViewLayout.numberOfColumns = 2
         countriesColView.collectionViewLayout = customCollectionViewLayout
         createHeadImage()
-        createAccountButton()
+        //createAccountButton()
         createHeadLabel()
         createSubLabel()
         createSearch()
@@ -120,7 +123,7 @@ class TouristHomeVC: UIViewController, UITextFieldDelegate, UICollectionViewDele
     
     func createSearchBar(){
         searchBar.frame = searchView.frame
-        searchBar.placeholder = "country or city..."
+        searchBar.placeholder = "enter the country..."
         searchBar.font = UIFont(name: "Helvetica", size: 15)
         searchBar.clearButtonMode = .whileEditing
         searchBar.tintColor = mainColor
@@ -130,19 +133,19 @@ class TouristHomeVC: UIViewController, UITextFieldDelegate, UICollectionViewDele
         view.addSubview(searchBar)
     }
     
-    func createAccountButton(){
-        button.frame = CGRect(x: self.view.bounds.maxX - 80, y: view.bounds.minY + 50, width: 48, height: 48)
-        button.adjustsImageWhenHighlighted = false
-        button.setImage(UIImage(named: "account"), for: .normal)
-        button.addTarget(self, action: #selector(go), for: .touchUpInside)
-        view.addSubview(button)
-    }
-    
-    
-    @objc func go(){
-        let accountVC = AccountViewController()
-        navigationController?.pushViewController(accountVC, animated: true)
-    }
+//    func createAccountButton(){
+//        button.frame = CGRect(x: self.view.bounds.maxX - 80, y: view.bounds.minY + 50, width: 48, height: 48)
+//        button.adjustsImageWhenHighlighted = false
+//        button.setImage(UIImage(named: "account"), for: .normal)
+//        button.addTarget(self, action: #selector(go), for: .touchUpInside)
+//        view.addSubview(button)
+//    }
+//
+//
+//    @objc func go(){
+//        let accountVC = AccountViewController()
+//        navigationController?.pushViewController(accountVC, animated: true)
+//    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         searchBar.resignFirstResponder()
@@ -165,15 +168,19 @@ class TouristHomeVC: UIViewController, UITextFieldDelegate, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CountryCell
         cell.backgroundView = UIImageView(image: UIImage(named: countries[indexPath.row]))
+        cell.countryLabel.text = countries[indexPath.row]
         cell.clipsToBounds = true
-        
-        cell.layer.cornerRadius = 13
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, heightForItemAt indexPath: IndexPath, with width: CGFloat) -> CGFloat {
             let heightSizes = [120,216]
             return CGFloat(heightSizes[dataSet[indexPath.row].isBig ? 1 : 0])
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        choosedVC.choosedCountry = countries[indexPath.row]
+        navigationController?.pushViewController(self.choosedVC, animated: true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -188,14 +195,44 @@ class TouristHomeVC: UIViewController, UITextFieldDelegate, UICollectionViewDele
 }
 
 class CountryCell : UICollectionViewCell{
+    var countryLabel = UILabel()
+    var backView = UIView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
     
     func setup() {
-        //self.layer.cornerRadius = 13
+        self.layer.cornerRadius = 13
+        self.layer.borderWidth = 1.5
+        self.layer.borderColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+        
+        addSubview(backView)
+        addSubview(countryLabel)
+        
+        backView.translatesAutoresizingMaskIntoConstraints = false
+        countryLabel.translatesAutoresizingMaskIntoConstraints = false
+        backView.backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+        backView.layer.cornerRadius = 10
+        backView.alpha = 0.8
+        countryLabel.font = UIFont(name: "Georgia", size: 20)
+        countryLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        
+        NSLayoutConstraint.activate([
+            countryLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 1),
+            countryLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 3),
+            countryLabel.heightAnchor.constraint(equalToConstant: 30),
+            
+            backView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: -7),
+            backView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -9),
+            backView.widthAnchor.constraint(equalTo: countryLabel.widthAnchor, constant: 17),
+            backView.heightAnchor.constraint(equalToConstant: 40),
+        ])
     }
+    
+    
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

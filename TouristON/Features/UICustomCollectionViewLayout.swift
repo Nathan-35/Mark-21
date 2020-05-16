@@ -36,7 +36,7 @@ public class CustomCollectionViewLayout: UICollectionViewLayout {
     
     override public func prepare() {
         if cache.isEmpty {
-            collectionView?.contentInset = UIEdgeInsets(top: 0, left: cellPadding, bottom: cellPadding, right: cellPadding)
+            collectionView?.contentInset = UIEdgeInsets(top: 15, left: cellPadding, bottom: cellPadding, right: cellPadding)
             let columnWidth = contentWidth / CGFloat(numberOfColumns)
             var xOffset = [CGFloat]()
             for column in 0 ..< numberOfColumns {

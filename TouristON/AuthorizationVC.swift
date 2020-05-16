@@ -321,7 +321,7 @@ class AuthorizationVC: UIViewController, UITextFieldDelegate {
     }
     
     @objc func pushToMain() {
-                   let mainVC = MainVC()
+                   let mainVC = TouristHomeVC()
                    navigationController?.pushViewController(mainVC, animated: true)
 //        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (result, error) in
 //            if error != nil {
