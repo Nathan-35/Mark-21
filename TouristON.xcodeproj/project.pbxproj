@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1E0E3DB4A8887ABE79CCC684 /* Pods_TouristON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFE2C8D577D0D300CD2B0D73 /* Pods_TouristON.framework */; };
-		5407E0F323D71037008E6CF0 /* CountriesCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407E0F123D71037008E6CF0 /* CountriesCollectionCell.swift */; };
-		5407E0F423D71037008E6CF0 /* CountriesCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5407E0F223D71037008E6CF0 /* CountriesCollectionCell.xib */; };
+		5453B5AB24700F9500EEB129 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5453B5AA24700F9500EEB129 /* CountryCell.swift */; };
 		545A0E06239800A700D16B3C /* TouristHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545A0E05239800A700D16B3C /* TouristHomeVC.swift */; };
 		545A0E08239800B300D16B3C /* OffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545A0E07239800B300D16B3C /* OffersViewController.swift */; };
 		545A0E0A239800BE00D16B3C /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545A0E09239800BE00D16B3C /* FavouritesViewController.swift */; };
@@ -31,8 +30,7 @@
 
 /* Begin PBXFileReference section */
 		1F77E53F7AFCC9A07FC4B12C /* Pods-TouristON.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouristON.debug.xcconfig"; path = "Target Support Files/Pods-TouristON/Pods-TouristON.debug.xcconfig"; sourceTree = "<group>"; };
-		5407E0F123D71037008E6CF0 /* CountriesCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesCollectionCell.swift; sourceTree = "<group>"; };
-		5407E0F223D71037008E6CF0 /* CountriesCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountriesCollectionCell.xib; sourceTree = "<group>"; };
+		5453B5AA24700F9500EEB129 /* CountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
 		545A0E05239800A700D16B3C /* TouristHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristHomeVC.swift; sourceTree = "<group>"; };
 		545A0E07239800B300D16B3C /* OffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewController.swift; sourceTree = "<group>"; };
 		545A0E09239800BE00D16B3C /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
@@ -104,8 +102,7 @@
 				546C95F323BA0169002B04C0 /* AnimatedView.swift */,
 				54E9ABB723B50E6D00EE9481 /* CustomTextField.swift */,
 				548B10A423D5817F0054913A /* UICustomCollectionViewLayout.swift */,
-				5407E0F123D71037008E6CF0 /* CountriesCollectionCell.swift */,
-				5407E0F223D71037008E6CF0 /* CountriesCollectionCell.xib */,
+				5453B5AA24700F9500EEB129 /* CountryCell.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -207,7 +204,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8304B4F2393B92600AD76A5 /* LaunchScreen.storyboard in Resources */,
-				5407E0F423D71037008E6CF0 /* CountriesCollectionCell.xib in Resources */,
 				D8304B4C2393B92600AD76A5 /* Assets.xcassets in Resources */,
 				D8304B4A2393B92500AD76A5 /* Main.storyboard in Resources */,
 				D8301CE723C3404B000DA482 /* GoogleService-Info.plist in Resources */,
@@ -266,7 +262,6 @@
 				D8304B572393C61D00AD76A5 /* MainVC.swift in Sources */,
 				54A157B4246CF8DF00F8B741 /* ChoosedCountryVC.swift in Sources */,
 				D89A160F23BDF4A00028E6E7 /* RegistrationVC.swift in Sources */,
-				5407E0F323D71037008E6CF0 /* CountriesCollectionCell.swift in Sources */,
 				545A0E08239800B300D16B3C /* OffersViewController.swift in Sources */,
 				545A0E0D2398092600D16B3C /* AccountViewController.swift in Sources */,
 				D8304B472393B92500AD76A5 /* AuthorizationVC.swift in Sources */,
@@ -274,6 +269,7 @@
 				546C95F423BA0169002B04C0 /* AnimatedView.swift in Sources */,
 				548B10A523D5817F0054913A /* UICustomCollectionViewLayout.swift in Sources */,
 				D8304B452393B92500AD76A5 /* SceneDelegate.swift in Sources */,
+				5453B5AB24700F9500EEB129 /* CountryCell.swift in Sources */,
 				545A0E0A239800BE00D16B3C /* FavouritesViewController.swift in Sources */,
 				545A0E06239800A700D16B3C /* TouristHomeVC.swift in Sources */,
 				54E9ABB823B50E6D00EE9481 /* CustomTextField.swift in Sources */,

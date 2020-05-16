@@ -23,15 +23,17 @@ class ChoosedCountryVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        createPriceLabel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         createHeadImage()
         createBackItem()
         validateCountry(country: choosedCountry)
         createCountryLabel()
         createCountryDescription()
         createBuyTicketButton()
-        createPriceLabel()
     }
-    
     
     func createHeadImage(){
         headImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 375))
@@ -123,7 +125,7 @@ class ChoosedCountryVC: UIViewController {
     }
     
     @objc func popBack(){
-        navigationController?.pushViewController(TouristHomeVC(), animated: false)
+        navigationController?.popViewController(animated: true)
     }
     
     

@@ -48,7 +48,6 @@ class TouristHomeVC: UIViewController, UITextFieldDelegate, UICollectionViewDele
         customCollectionViewLayout.numberOfColumns = 2
         countriesColView.collectionViewLayout = customCollectionViewLayout
         createHeadImage()
-        //createAccountButton()
         createHeadLabel()
         createSubLabel()
         createSearch()
@@ -133,19 +132,6 @@ class TouristHomeVC: UIViewController, UITextFieldDelegate, UICollectionViewDele
         view.addSubview(searchBar)
     }
     
-//    func createAccountButton(){
-//        button.frame = CGRect(x: self.view.bounds.maxX - 80, y: view.bounds.minY + 50, width: 48, height: 48)
-//        button.adjustsImageWhenHighlighted = false
-//        button.setImage(UIImage(named: "account"), for: .normal)
-//        button.addTarget(self, action: #selector(go), for: .touchUpInside)
-//        view.addSubview(button)
-//    }
-//
-//
-//    @objc func go(){
-//        let accountVC = AccountViewController()
-//        navigationController?.pushViewController(accountVC, animated: true)
-//    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         searchBar.resignFirstResponder()
@@ -194,47 +180,4 @@ class TouristHomeVC: UIViewController, UITextFieldDelegate, UICollectionViewDele
     
 }
 
-class CountryCell : UICollectionViewCell{
-    var countryLabel = UILabel()
-    var backView = UIView()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    func setup() {
-        self.layer.cornerRadius = 13
-        self.layer.borderWidth = 1.5
-        self.layer.borderColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
-        
-        addSubview(backView)
-        addSubview(countryLabel)
-        
-        backView.translatesAutoresizingMaskIntoConstraints = false
-        countryLabel.translatesAutoresizingMaskIntoConstraints = false
-        backView.backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
-        backView.layer.cornerRadius = 10
-        backView.alpha = 0.8
-        countryLabel.font = UIFont(name: "Georgia", size: 20)
-        countryLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        
-        NSLayoutConstraint.activate([
-            countryLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 1),
-            countryLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 3),
-            countryLabel.heightAnchor.constraint(equalToConstant: 30),
-            
-            backView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: -7),
-            backView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -9),
-            backView.widthAnchor.constraint(equalTo: countryLabel.widthAnchor, constant: 17),
-            backView.heightAnchor.constraint(equalToConstant: 40),
-        ])
-    }
-    
-    
-    
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
+
