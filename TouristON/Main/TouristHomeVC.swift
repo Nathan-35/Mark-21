@@ -1,4 +1,3 @@
-//
 //  TouristHomeVC.swift
 //  TouristON
 //
@@ -51,6 +50,7 @@ class TouristHomeVC: UIViewController, UITextFieldDelegate, UICollectionViewDele
         createHeadLabel()
         createSubLabel()
         createSearch()
+        createAccountButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -145,6 +145,18 @@ class TouristHomeVC: UIViewController, UITextFieldDelegate, UICollectionViewDele
         countriesColView.dataSource = self
         countriesColView.showsVerticalScrollIndicator = false
         view.addSubview(countriesColView)
+    }
+    
+    func createAccountButton(){
+        button.frame = CGRect(x: self.view.bounds.maxX - 80, y: view.bounds.minY + 60, width: 48, height: 48)
+        button.adjustsImageWhenHighlighted = false
+        button.setImage(UIImage(named: "account"), for: .normal)
+        button.addTarget(self, action: #selector(go), for: .touchUpInside)
+        view.addSubview(button)
+    }
+    @objc func go(){
+        let accountVC = AccountViewController()
+        navigationController?.pushViewController(accountVC, animated: true)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

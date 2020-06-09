@@ -376,7 +376,7 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
         } else {
             Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (result, error) in
                 if error != nil {
-                    self.outletLabel.text = "\(error?.localizedDescription)"
+                    self.outletLabel.text = "\(error?.localizedDescription ?? "")"
                 } else {
                     let dataBase = Firestore.firestore()
                     dataBase.collection("users").addDocument(data: [
